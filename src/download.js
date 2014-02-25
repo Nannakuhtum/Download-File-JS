@@ -27,10 +27,19 @@ window.downloadFile = function (sUrl) {
         }
     }
 
+    var downloadIframe = document.getElementById('downloadJSIFrame');
+    if (!downloadIframe) {
+        downloadIframe = document.createElement('iframe');
+        downloadIframe.id = 'downloadJSIFrame';
+        downloadIframe.style.display = 'none';
+
+        document.body.appendChild(downloadIframe);
+    }
+
     // Force file download (whether supported by server).
     sUrl += '?download';
+    downloadIframe.src = sUrl;
 
-    window.open(sUrl, '_self');
     return true;
 }
 
